@@ -3,11 +3,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import os  # 追加
 
 # アプリケーションの初期化
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'unichat-secret-key'  # 本番環境では環境変数から取得すべき
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret-key')  # 環境変数から取得
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///data.db')  # 環境変数から取得
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # DB初期化
@@ -143,4 +144,4 @@ with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()  # デバッグモードを無効化

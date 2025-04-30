@@ -10,9 +10,7 @@
   <div class="post-card">
     <div class="post-header">
       <span class="username">{{ post.author.username }}</span>
-      <span class="timestamp"
-        >{{ post.timestamp.strftime('%Y/%m/%d %H:%M') }}</span
-      >
+      <span class="timestamp">{{ post.timestamp|jst }}</span>
     </div>
     <div class="post-content">{{ post.content }}</div>
   </div>

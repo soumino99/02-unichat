@@ -1,4 +1,5 @@
 from datetime import datetime
+import pytz
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -138,6 +139,21 @@ def post():
 def mypage():
     posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.timestamp.desc()).all()
     return render_template('mypage.html', posts=posts, user=current_user)
+
+@app.template_filter('jst')
+def jst(datetime_utc):
+    if datetime_utc is None:
+        return ''
+    
+    utc = pytz.utc
+    if datetime_utc.tzinfo is None:
+        datetime_utc = utc.localize(datetime_utc)
+    
+    jst = pytz.timezone('Asia/Tokyo')
+    datetime_jst = datetime_utc.astimezone(jst)
+
+    return datetime_jst.strftime('%Y/%m/%d %H:%M')
+
 
 # アプリケーション起動時にDBを作成
 with app.app_context():

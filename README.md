@@ -17,7 +17,7 @@ Twitter風のタイムライン形式で、ユーザーがログインして自�
 ## 技術スタック
 
 - **バックエンド**: Python/Flask
-- **データベース**: SQLite + SQLAlchemy
+- **データベース**: PostgreSQL~~SQLite~~ + SQLAlchemy
 - **認証**: Flask-Login
 - **フロントエンド**: HTML/CSS/Jinja2/Bootstrap
 

@@ -19,7 +19,8 @@ Twitter風のタイムライン形式で、ユーザーがログインして自�
 | 技術             | 用途                     |
 |------------------|--------------------------|
 | Python / Flask   | Webアプリフレームワーク  |
-| SQLite           | 軽量なファイル型DB       |
+| ~~SQLite~~           | ~~軽量なファイル型DB~~       |
+| PostgreSQL           | Renderで利用可能       |
 | SQLAlchemy       | ORM（DB操作の簡略化）    |
 | Flask-Login      | 認証管理（ログイン機能） |
 | Jinja2           | テンプレートエンジン     |
